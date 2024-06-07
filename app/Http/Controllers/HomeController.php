@@ -53,7 +53,6 @@ class HomeController extends Controller
 
             // Retrieving the results
             $entries = $query->get();
-            dd($entries);
         } else {
             $entries = Entry::all();
         }
