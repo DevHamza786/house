@@ -27,7 +27,7 @@ Route::post('/entry', 'EntryController@store')->name('create');
 Route::get('/entries', 'HomeController@entries')->name('entries');
 Route::get('/entry/{entry}/edit', 'EntryController@edit')->name('entry.edit');
 Route::patch('/entry/{entry}', 'EntryController@update')->name('entry.update');
-Route::get('/entry/{id}', 'EntryController@destroy')->name('destroy');
+// Route::get('/entry/{id}', 'EntryController@destroy')->name('destroy');
 Route::post('/entry/print-selected', 'EntryController@printSelected')->name('entry.printSelected');
-
+Route::get('/entry/print-preview', 'EntryController@printPreview')->name('entry.printpreview');
 

@@ -125,4 +125,95 @@ class EntryController extends Controller
         // Render a view for printing
         return view('entry.selectedprint', compact('entries'));
     }
+
+    public function printPreview(Request $request)
+    {
+        $type = gettype($request->input('columns'));
+        if($type == 'string'){
+            $selectedColumns = explode(',',$request->input('columns'));
+        }else{
+            $selectedColumns = $request->input('columns');
+        }
+        $entries = Entry::all(); // Replace with your actual model and query logic
+
+        // Define columns in the order they are shown in the table
+        $columns = [
+            'ms' => 'Ms',
+            'plot' => 'Plot',
+            'serial' => 'serial',
+            'area' => 'area',
+            'phase' => 'Phase',
+            'name' => 'Name',
+            'address' => 'Address',
+            'date' => 'Date',
+            'msd' => 'MSD',
+            'phone' => 'Phone',
+            'nic' => 'N.I.C',
+            'dp' => 'D/P',
+            'wp' => 'W/C',
+            'upto' => 'Upto',
+            'status' => 'Status',
+        ];
+
+        // Initialize an array to store selected columns in reverse order
+        $columnsOrdered = [];
+        $selectedColumns = array_reverse($selectedColumns);
+
+        // Map selected columns to actual column names in your database
+        foreach ($selectedColumns as $selectedColumn) {
+            // Append selected columns in the reverse order
+            switch ($selectedColumn) {
+                case 'Ms':
+                    $columnsOrdered[] = 'ms';
+                    break;
+                case 'Plot':
+                    $columnsOrdered[] = 'plot';
+                    break;
+                case 'serial':
+                    $columnsOrdered[] = 'serial';
+                    break;
+                case 'area':
+                    $columnsOrdered[] = 'area';
+                    break;
+                case 'Phase':
+                    $columnsOrdered[] = 'phase';
+                    break;
+                case 'Name':
+                    $columnsOrdered[] = 'name';
+                    break;
+                case 'Address':
+                    $columnsOrdered[] = 'address';
+                    break;
+                case 'Date':
+                    $columnsOrdered[] = 'date';
+                    break;
+                case 'MSD':
+                    $columnsOrdered[] = 'msd';
+                    break;
+                case 'Phone':
+                    $columnsOrdered[] = 'phone';
+                    break;
+                case 'N.I.C':
+                    $columnsOrdered[] = 'nic';
+                    break;
+                case 'D/P':
+                    $columnsOrdered[] = 'dp';
+                    break;
+                case 'W/C':
+                    $columnsOrdered[] = 'wp';
+                    break;
+                case 'Upto':
+                    $columnsOrdered[] = 'upto';
+                    break;
+                case 'Status':
+                    $columnsOrdered[] = 'status';
+                    break;
+                default:
+                    // Handle unexpected column values
+                    break;
+            }
+        }
+        return view('entry.printpreview', compact('columnsOrdered', 'entries', 'columns'));
+    }
+
 }

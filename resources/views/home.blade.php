@@ -75,10 +75,10 @@
                                 <th class="dateColumn">Date</th>
                                 <th class="msdColumn">M.S (D)</th>
                                 <th class="phoneColumn">Phone</th>
-                                <th class="phoneColumn">C/L</th>
-                                <th class="phoneColumn">O/C</th>
-                                <th class="phoneColumn">B/C</th>
-                                <th class="phoneColumn">Balance</th>
+                                <th class="clColumn">C/L</th>
+                                <th class="ocColumn">O/C</th>
+                                <th class="bcColumn">B/C</th>
+                                <th class="balanceColumn">Balance</th>
                                 <th class="statusColumn">Status</th>
                                 <th class="actionTable">Action</th>
                             </thead>
@@ -86,7 +86,8 @@
                                 <?php $i = 1; ?>
                                 @foreach ($entries as $entry)
                                     <tr>
-                                        <td class="no-print"><input type="checkbox" class="select-row" data-id="{{ $entry->id }}" /></td>
+                                        <td class="no-print"><input type="checkbox" class="select-row"
+                                                data-id="{{ $entry->id }}" /></td>
                                         <td class="stylingclass">{{ $i++ }}</td>
                                         <td class="msColumn stylingclass">{{ $entry->ms }}</td>
                                         <td class="plotColumn stylingclass">{{ $entry->plot }}</td>
@@ -101,11 +102,11 @@
                                         <td class="nicColumn stylingclass">{{ $entry->name10 }}</td>
                                         <td class="dateColumn stylingclass">{{ $entry->date }}</td>
                                         <td class="msdColumn stylingclass">{{ $entry->msd }}</td>
-                                        <td class="msdColumn stylingclass">{{ $entry->phone }}</td>
-                                        <td class="msdColumn stylingclass">{{ $entry->cost_of_land }}</td>
-                                        <td class="msdColumn stylingclass">{{ $entry->other_charges }}</td>
-                                        <td class="msdColumn stylingclass">{{ $entry->bounder_wall_charges }}</td>
-                                        <td class="msdColumn stylingclass">{{ $entry->balance }}</td>
+                                        <td class="phoneColumn stylingclass">{{ $entry->phone }}</td>
+                                        <td class="clColumn stylingclass">{{ $entry->cost_of_land }}</td>
+                                        <td class="ocColumn stylingclass">{{ $entry->other_charges }}</td>
+                                        <td class="bcColumn stylingclass">{{ $entry->bounder_wall_charges }}</td>
+                                        <td class="balanceColumn stylingclass">{{ $entry->balance }}</td>
                                         <td class="statusColumn stylingclass">
                                             @if ($entry->status)
                                                 <span class="badge badge-success">Open</span>
@@ -152,69 +153,73 @@
                         <label class="form-check-label" for="msCheck">Ms</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="plotCheck" name="plotCheck"
-                            value="option1">
-                        <label class="form-check-label" for="plotCheck">Plot</label>
+                        <input class="form-check-input columnCheck" type="checkbox" id="plotCheck" name="plotCheck"
+                            value="plot">
+                        <label class="form-check-label columnCheck" for="plotCheck">Plot</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="serialCheck" name="serialCheck"
-                            value="option2">
-                        <label class="form-check-label" for="serialCheck">S#</label>
+                        <input class="form-check-input columnCheck" type="checkbox" id="serialCheck" name="serialCheck"
+                            value="serial">
+                        <label class="form-check-label columnCheck" for="serialCheck">S#</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="areaCheck" name="areaCheck"
-                            value="option3">
-                        <label class="form-check-label" for="areaCheck">A#</label>
+                        <input class="form-check-input columnCheck" type="checkbox" id="areaCheck" name="areaCheck"
+                            value="area">
+                        <label class="form-check-label columnCheck" for="areaCheck">A#</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="phaseCheck" name="phaseCheck"
-                            value="option4">
-                        <label class="form-check-label" for="phaseCheck">Phase</label>
+                        <input class="form-check-input columnCheck" type="checkbox" id="phaseCheck" name="phaseCheck"
+                            value="Phase">
+                        <label class="form-check-label columnCheck" for="phaseCheck">Phase</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="nameCheck" name="nameCheck"
-                            value="option5">
-                        <label class="form-check-label" for="nameCheck">Name</label>
+                        <input class="form-check-input columnCheck" type="checkbox" id="nameCheck" name="nameCheck"
+                            value="Name">
+                        <label class="form-check-label columnCheck" for="nameCheck">Name</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="addressCheck" name="addressCheck"
-                            value="option6">
-                        <label class="form-check-label" for="addressCheck">Address</label>
+                        <input class="form-check-input columnCheck" type="checkbox" id="addressCheck"
+                            name="addressCheck" value="Address">
+                        <label class="form-check-label columnCheck" for="addressCheck">Address</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="dateCheck" name="dateCheck"
-                            value="option7">
-                        <label class="form-check-label" for="dateCheck">Date</label>
+                        <input class="form-check-input columnCheck" type="checkbox" id="dateCheck" name="dateCheck"
+                            value="Date">
+                        <label class="form-check-label columnCheck" for="dateCheck">Date</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="msdCheck" name="msdCheck" value="option8">
+                        <input class="form-check-input columnCheck" type="checkbox" id="msdCheck" name="msdCheck"
+                            value="MSD">
                         <label class="form-check-label" for="msdCheck">MSD</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="phoneCheck" name="phoneCheck"
-                            value="option9">
+                        <input class="form-check-input columnCheck" type="checkbox" id="phoneCheck" name="phoneCheck"
+                            value="phone">
                         <label class="form-check-label" for="phoneCheck">Phone</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="nicCheck" name="nicCheck" value="option9">
+                        <input class="form-check-input columnCheck" type="checkbox" id="nicCheck" name="nicCheck"
+                            value="N.I.C">
                         <label class="form-check-label" for="nicCheck">N.I.C</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="dpCheck" name="dpCheck" value="option9">
+                        <input class="form-check-input columnCheck" type="checkbox" id="dpCheck" name="dpCheck"
+                            value="D/P">
                         <label class="form-check-label" for="dpCheck">D/P</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="wpCheck" name="wpCheck" value="option9">
+                        <input class="form-check-input columnCheck" type="checkbox" id="wpCheck" name="wpCheck"
+                            value="W/C">
                         <label class="form-check-label" for="wpCheck">W/C</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="uptoCheck" name="uptoCheck"
-                            value="option9">
+                        <input class="form-check-input columnCheck" type="checkbox" id="uptoCheck" name="uptoCheck"
+                            value="Upto">
                         <label class="form-check-label" for="uptoCheck">Upto</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="statusCheck" name="statusCheck"
-                            value="option9">
+                        <input class="form-check-input columnCheck" type="checkbox" id="statusCheck" name="statusCheck"
+                            value="Status">
                         <label class="form-check-label" for="statusCheck">Status</label>
                     </div>
 
@@ -234,7 +239,8 @@
     td:hover {
         cursor: pointer;
     }
-        @media print {
+
+    @media print {
         .no-print {
             display: none;
         }
@@ -244,6 +250,40 @@
     <script>
         $(document).ready(function() {
             $('#entry-table').DataTable();
+
+            $('#printbutton').on('click', function() {
+                var selectedColumns = [];
+                $('.columnCheck:checked').each(function() {
+                    selectedColumns.push($(this).val());
+                });
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.ajax({
+                    url: "{{ route('entry.printpreview') }}",
+                    type: "GET",
+                    data: {
+                        columns: selectedColumns
+                    },
+                    success: function(response) {
+                        // Redirect to the print preview page with selected columns
+                        console.log(response); // log response for debugging
+                        // Use window.open to open the print preview page in a new tab
+                        var printPreviewUrl = "{{ route('entry.printpreview') }}?columns=" +
+                            selectedColumns.join(',');
+                        window.open(printPreviewUrl, '_blank');
+                    },
+                    error: function(xhr) {
+                        console.log(xhr.responseText);
+                    }
+                });
+            });
+
+
             $('#printbuttonall').on('click', function() {
                 setTimeout(function() {
                     printfunction();
@@ -251,64 +291,9 @@
                 }, 500);
 
             });
-
-
-            $('#printbutton').on('click', function() {
-                setTimeout(function() {
-                    if ($('#nicCheck').is(":not(:checked)"))
-                        $('.nicColumn').hide();
-
-                    if ($('#msCheck').is(":not(:checked)"))
-                        $('.msColumn').hide();
-
-                    if ($('#areaCheck').is(":not(:checked)"))
-                        $('.areaColumn').hide();
-
-                    if ($('#plotCheck').is(":not(:checked)"))
-                        $('.plotColumn').hide();
-
-                    if ($('#serialCheck').is(":not(:checked)"))
-                        $('.serialColumn').hide();
-
-
-
-                    if ($('#phaseCheck').is(":not(:checked)"))
-                        $('.phaseColumn').hide();
-
-                    if ($('#nameCheck').is(":not(:checked)"))
-                        $('.nameColumn').hide();
-
-                    if ($('#addressCheck').is(":not(:checked)"))
-                        $('.addressColumn').hide();
-
-                    if ($('#dateCheck').is(":not(:checked)"))
-                        $('.dateColumn').hide();
-
-                    if ($('#msdCheck').is(":not(:checked)"))
-                        $('.msdColumn').hide();
-
-                    if ($('#phoneCheck').is(":not(:checked)"))
-                        $('.phoneColumn').hide();
-
-                    if ($('#statusCheck').is(":not(:checked)"))
-                        $('.statusColumn').hide();
-
-                    if ($('#dpCheck').is(":not(:checked)"))
-                        $('.dpColumn').hide();
-
-                    if ($('#wpCheck').is(":not(:checked)"))
-                        $('.wpColumn').hide();
-
-                    if ($('#uptoCheck').is(":not(:checked)"))
-                        $('.uptoColumn').hide();
-
-                    printfunction();
-                    showAllColumns();
-                }, 500);
-
-            });
-
         });
+
+        //Print All Button function
 
         function showAllColumns() {
 
